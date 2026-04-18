@@ -1,9 +1,9 @@
 import { useState } from "react";
 import http from "../api/http";
 
-export default function UploadResume({ setJobs }) {
+export default function UploadResume({ onUploadComplete, setStatus }) {
   const [file, setFile] = useState(null);
-  const [status, setStatus] = useState("");
+  const [localStatus, setLocalStatus] = useState("");
 
   const handleUpload = async () => {
     if (!file) return;
@@ -12,28 +12,34 @@ export default function UploadResume({ setJobs }) {
     formData.append("resume", file);
 
     try {
-      setStatus("Uploading...");
+      setLocalStatus("Uploading and parsing resume...");
+      setStatus?.("Uploading and parsing resume...");
       const res = await http.post("/resume/upload", formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
-      setJobs(res.data.jobs || []);
-      setStatus("Upload and match completed");
+      onUploadComplete?.(res.data);
+      setLocalStatus("Upload complete. Matches refreshed.");
+      setStatus?.("Upload complete. Matches refreshed.");
     } catch (err) {
-      setStatus(err?.response?.data?.message || "Upload failed");
+      const message = err?.response?.data?.message || "Upload failed";
+      setLocalStatus(message);
+      setStatus?.(message);
     }
   };
 
   return (
-    <div style={{ marginBottom: 20 }}>
+    <div className="upload-card">
+      <h2>Upload Resume</h2>
+      <p className="muted">Accepts PDF and DOCX files up to 5 MB.</p>
       <input
         type="file"
         accept=".pdf,.doc,.docx"
         onChange={(e) => setFile(e.target.files?.[0] || null)}
       />
-      <button onClick={handleUpload} style={{ marginLeft: 10 }}>
+      <button onClick={handleUpload} className="primary-button">
         Upload Resume
       </button>
-      <p>{status}</p>
+      <p className="status-text">{localStatus}</p>
     </div>
   );
 }

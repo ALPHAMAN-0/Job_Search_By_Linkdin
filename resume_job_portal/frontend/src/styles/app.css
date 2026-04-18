@@ -1,0 +1,258 @@
+:root {
+  color-scheme: light;
+  --bg: #f4efe7;
+  --bg-strong: #e8dcc9;
+  --panel: rgba(255, 255, 255, 0.82);
+  --text: #1f2430;
+  --muted: #606778;
+  --accent: #1d6f74;
+  --accent-2: #d97706;
+  --border: rgba(31, 36, 48, 0.12);
+  --shadow: 0 24px 60px rgba(31, 36, 48, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Avenir Next", "Segoe UI", Candara, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(29, 111, 116, 0.16), transparent 35%),
+    radial-gradient(circle at top right, rgba(217, 119, 6, 0.18), transparent 32%),
+    linear-gradient(180deg, #fff8ef 0%, var(--bg) 100%);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.app-shell {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 248, 239, 0.72));
+  box-shadow: var(--shadow);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto -10% -50% auto;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(29, 111, 116, 0.16), transparent 70%);
+  pointer-events: none;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--accent-2);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 14ch;
+  font-size: clamp(2.5rem, 5vw, 4.9rem);
+  line-height: 0.95;
+}
+
+.hero-copy {
+  max-width: 62ch;
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.status-pill,
+.score-pill,
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+}
+
+.status-pill {
+  margin-top: 18px;
+  padding: 10px 14px;
+  background: rgba(29, 111, 116, 0.1);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 380px) minmax(0, 1fr);
+  gap: 20px;
+}
+
+.panel,
+.upload-card,
+.resume-card,
+.job-card {
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--panel);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow);
+}
+
+.panel {
+  padding: 20px;
+}
+
+.upload-card,
+.resume-card {
+  padding: 20px;
+}
+
+.upload-card {
+  display: grid;
+  gap: 12px;
+}
+
+.primary-button {
+  border: 0;
+  border-radius: 14px;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, var(--accent), #14494d);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.primary-button:hover {
+  filter: brightness(1.05);
+}
+
+.muted,
+.status-text,
+.job-card p,
+.job-card li {
+  color: var(--muted);
+}
+
+.section-header,
+.job-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.filter-grid label,
+.sort-row label {
+  display: grid;
+  gap: 8px;
+  color: var(--text);
+  font-size: 0.92rem;
+}
+
+.filter-grid input,
+.filter-grid select,
+.sort-row select,
+.upload-card input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(31, 36, 48, 0.14);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.checkbox-row {
+  grid-template-columns: 18px 1fr;
+  align-items: center;
+}
+
+.job-card {
+  padding: 18px;
+  margin-top: 14px;
+}
+
+.score-pill {
+  min-width: 58px;
+  height: 58px;
+  padding: 0 12px;
+  background: rgba(217, 119, 6, 0.12);
+  color: #b45309;
+  font-weight: 800;
+}
+
+.tag-row,
+.skills-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.tag {
+  padding: 6px 10px;
+  background: rgba(31, 36, 48, 0.06);
+  color: var(--text);
+  font-size: 0.82rem;
+}
+
+.reason-list {
+  margin: 14px 0 0;
+  padding-left: 18px;
+}
+
+.apply-link {
+  display: inline-flex;
+  margin-top: 16px;
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 920px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    max-width: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    padding-inline: 14px;
+  }
+
+  .hero {
+    padding: 22px;
+  }
+
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+}
