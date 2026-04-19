@@ -1,11 +1,13 @@
 const fs = require("fs/promises");
-const pdfParse = require("pdf-parse");
+const { PDFParse } = require("pdf-parse");
 const mammoth = require("mammoth");
 
 async function extractTextFromDocument(filePath, mimeType) {
 	if (mimeType === "application/pdf") {
 		const buffer = await fs.readFile(filePath);
-		const parsed = await pdfParse(buffer);
+		const parser = new PDFParse({ data: buffer });
+		const parsed = await parser.getText();
+		await parser.destroy();
 		return parsed.text || "";
 	}
 
