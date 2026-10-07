@@ -1,13 +1,13 @@
 {
-	"name": "worker",
-	"version": "1.0.0",
-	"private": true,
-	"scripts": {
-		"dev": "node src/index.js",
-		"start": "node src/index.js"
-	},
-	"dependencies": {
-		"dotenv": "^17.4.2",
-		"mongoose": "^9.4.1"
-	}
+  "name": "worker",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node init && node src/index.js",
+    "start": "node init && node src/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "mongoose": "^9.4.1"
+  }
 }
