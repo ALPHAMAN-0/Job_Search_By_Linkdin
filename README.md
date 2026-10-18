@@ -4,11 +4,11 @@ Resume-based job search portal built with MERN that parses PDF/DOCX resumes, mat
 ## Architecture / How it Works
 
 ```mermaid
-flowchart LR
-    A[User] --> B[Job Search By Linkdin]
-    B --> C{Logic}
-    C --> D[(Data)]
-    C --> E[Output]
-    D --> C
+flowchart TD
+    Frontend -->|HTTP /api/*| Backend
+    Backend -->|connectDB| Database
+    Worker -->|connectDB via backend/src/config/db| Database
+    Worker -.->|requires backend/src/config/db.js| Backend
+    Shared
 ```
 
